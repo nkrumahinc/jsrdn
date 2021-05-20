@@ -4,6 +4,6 @@ import retrofit2.http.GET
 import retrofit2.Call
 
 interface Endpoint {
-    @GET("")
+    @GET("interview.json")
     fun get(): Call<Response>
 }

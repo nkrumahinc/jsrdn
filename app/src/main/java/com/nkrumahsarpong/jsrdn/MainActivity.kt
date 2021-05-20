@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                     rvCategories.apply{
                         setHasFixedSize(true)
                         layoutManager = LinearLayoutManager(this@MainActivity)
-                        adapter = CategoriesAdapter(cats)
+                        adapter = CategoriesAdapter(cats, this@MainActivity)
                     }
                 }
             }

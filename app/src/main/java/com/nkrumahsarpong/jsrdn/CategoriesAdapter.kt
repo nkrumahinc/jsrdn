@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class CategoriesAdapter (val categories: List<Cat>):RecyclerView.Adapter<CategoryViewHolder>(){
+class CategoriesAdapter (val categories: List<Cat>, context:Context):RecyclerView.Adapter<CategoryViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.categorylayout, parent, false)
         return CategoryViewHolder(view)
@@ -29,5 +30,10 @@ class CategoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
     fun bind(category:Cat){
         tvCategory.text = category.title
+        rvShows.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+            adapter = ShowsAdapter(category.shows)
+        }
     }
 }

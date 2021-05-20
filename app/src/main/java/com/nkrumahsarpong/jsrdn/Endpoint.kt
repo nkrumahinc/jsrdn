@@ -5,5 +5,5 @@ import retrofit2.Call
 
 interface Endpoint {
     @GET("interview.json")
-    fun get(): Call<Response>
+    fun get(): Call<Received>
 }

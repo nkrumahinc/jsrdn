@@ -1,6 +1,6 @@
 package com.nkrumahsarpong.jsrdn
 
-data class Response(
+data class Received(
     val adtag:String,
     val shows:List<Show>
 )

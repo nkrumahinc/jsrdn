@@ -17,3 +17,8 @@ data class Content(
     val video: String,
     val thumbnail: String
 )
+
+data class Cat(
+    val title: String,
+    val shows:List<Show>
+)

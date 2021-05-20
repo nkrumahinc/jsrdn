@@ -14,7 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView:RecyclerView = findViewById(R.id.recyclerView)
+        val rvCategories:RecyclerView = findViewById(R.id.rvCategories)
+//        val rvShows:RecyclerView = findViewById(R.id.rvShows)
 
         val request = ServiceBuilder.buildService(Endpoint::class.java)
         val call = request.get()
@@ -26,10 +27,27 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<Received>, response: Response<Received>) {
                 if(response.isSuccessful){
-                    recyclerView.apply{
+                    val catTitles:MutableList<String> = mutableListOf()
+                    val cats:MutableList<Cat> = mutableListOf()
+
+                    val shows = response.body()!!.shows
+
+                    for(show in shows){
+                        if (show.category !in catTitles) catTitles.add(show.category)
+                    }
+
+                    for (cattitle in catTitles){
+                        val catshows:MutableList<Show> = mutableListOf()
+                        for(show in shows){
+                            if(show.category == cattitle) catshows.add(show)
+                        }
+                        cats.add(Cat(cattitle, catshows))
+                    }
+
+                    rvCategories.apply{
                         setHasFixedSize(true)
                         layoutManager = LinearLayoutManager(this@MainActivity)
-                        adapter = ShowsAdapter(response.body()!!.shows)
+                        adapter = CategoriesAdapter(cats)
                     }
                 }
             }

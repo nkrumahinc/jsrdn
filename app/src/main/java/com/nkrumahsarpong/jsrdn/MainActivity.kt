@@ -1,10 +1,14 @@
 package com.nkrumahsarpong.jsrdn
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.MediaController
 import android.widget.Toast
+import android.widget.VideoView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,6 +19,7 @@ class MainActivity : AppCompatActivity(), ShowClickListener {
         setContentView(R.layout.activity_main)
 
         val rvCategories:RecyclerView = findViewById(R.id.rvCategories)
+        val videoView = findViewById<VideoView>(R.id.videoview)
 
         val request = ServiceBuilder.buildService(Endpoint::class.java)
         val call = request.get()
@@ -55,7 +60,17 @@ class MainActivity : AppCompatActivity(), ShowClickListener {
     }
 
     override fun onShowClick(show:Show) {
-        Toast.makeText(this@MainActivity, show.title, Toast.LENGTH_LONG).show()
+        val mediaController = MediaController(this)
+        mediaController.setAnchorView(videoview)
+
+        val url = "https:" + show.content.video.split(":")[1]
+
+        videoview.setMediaController(mediaController)
+        videoview.setVideoURI(Uri.parse(url))
+        videoview.requestFocus()
+        videoview.start()
+
+        Toast.makeText(this@MainActivity, "playing $url", Toast.LENGTH_LONG).show()
     }
 
 

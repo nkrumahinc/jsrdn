@@ -14,18 +14,23 @@
         android:id="@+id/tvCategory"
 
         />
-    <HorizontalScrollView
-        app:layout_constraintTop_toBottomOf="@+id/tvCategory"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <HorizontalScrollView-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvCategory"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/rvShows"/>
-    </HorizontalScrollView>
+            android:id="@+id/rvShows"
+            app:layout_constraintTop_toBottomOf="@id/tvCategory"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+<!--    </HorizontalScrollView>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

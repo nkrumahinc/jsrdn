@@ -30,10 +30,12 @@ class CategoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
     fun bind(category:Cat){
         tvCategory.text = category.title
+
         rvShows.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = ShowsAdapter(category.shows)
         }
+
     }
 }

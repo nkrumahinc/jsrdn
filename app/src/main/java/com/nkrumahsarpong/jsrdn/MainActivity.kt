@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val rvCategories:RecyclerView = findViewById(R.id.rvCategories)
-//        val rvShows:RecyclerView = findViewById(R.id.rvShows)
 
         val request = ServiceBuilder.buildService(Endpoint::class.java)
         val call = request.get()
@@ -36,12 +35,12 @@ class MainActivity : AppCompatActivity() {
                         if (show.category !in catTitles) catTitles.add(show.category)
                     }
 
-                    for (cattitle in catTitles){
+                    for (catTitle in catTitles){
                         val catshows:MutableList<Show> = mutableListOf()
                         for(show in shows){
-                            if(show.category == cattitle) catshows.add(show)
+                            if(show.category == catTitle) catshows.add(show)
                         }
-                        cats.add(Cat(cattitle, catshows))
+                        cats.add(Cat(catTitle, catshows))
                     }
 
                     rvCategories.apply{

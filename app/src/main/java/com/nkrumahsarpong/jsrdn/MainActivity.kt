@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ShowClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,11 +46,17 @@ class MainActivity : AppCompatActivity() {
                     rvCategories.apply{
                         setHasFixedSize(true)
                         layoutManager = LinearLayoutManager(this@MainActivity)
-                        adapter = CategoriesAdapter(cats, this@MainActivity)
+                        adapter = CategoriesAdapter(cats, this@MainActivity, this@MainActivity)
                     }
                 }
             }
 
         })
     }
+
+    override fun onShowClick(show:Show) {
+        Toast.makeText(this@MainActivity, show.title, Toast.LENGTH_LONG).show()
+    }
+
+
 }

@@ -1,6 +1,5 @@
 package com.nkrumahsarpong.jsrdn
 
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.MediaController
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity(), ShowClickListener {
         setContentView(R.layout.activity_main)
 
         val rvCategories:RecyclerView = findViewById(R.id.rvCategories)
-        val videoView = findViewById<VideoView>(R.id.videoview)
+        val videoView:VideoView = findViewById(R.id.videoview)
 
         val request = ServiceBuilder.buildService(Endpoint::class.java)
         val call = request.get()
@@ -66,11 +65,10 @@ class MainActivity : AppCompatActivity(), ShowClickListener {
         val url = "https:" + show.content.video.split(":")[1]
 
         videoview.setMediaController(mediaController)
-        videoview.setVideoURI(Uri.parse(url))
+        videoview.setVideoPath(url)
         videoview.requestFocus()
         videoview.start()
 
-        Toast.makeText(this@MainActivity, "playing $url", Toast.LENGTH_LONG).show()
     }
 
 
